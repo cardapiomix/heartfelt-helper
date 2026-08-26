@@ -181,7 +181,7 @@ function PaginaEntrar() {
 
           <div className="mt-8 text-center">
             <Link
-              to="/cliente/explorar"
+              to="/explorar"
               className="rounded text-sm font-medium text-primary underline-offset-4 hover:underline focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
             >
               Continuar sem conta
