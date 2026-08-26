@@ -73,7 +73,7 @@ export function CampoSenha({ label, erro, className, ...props }: BaseProps) {
   );
 }
 
-function MensagemDeErro({ id, erro }: { id: string; erro?: string | null }) {
+function MensagemDeErro({ id, erro }: { id: string; erro: string | null | undefined }) {
   return (
     <p id={id} aria-live="polite" className="min-h-5 text-sm font-medium text-destructive">
       {erro ? <span>⚠ {erro}</span> : null}
