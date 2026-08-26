@@ -15,6 +15,7 @@ import { Route as EntrarRouteImport } from './routes/entrar'
 import { Route as ExplorarRouteImport } from './routes/explorar'
 import { Route as RecuperarSenhaRouteImport } from './routes/recuperar-senha'
 import { Route as AuthenticatedClienteRouteImport } from './routes/_authenticated/cliente'
+import { Route as AuthenticatedComercianteRouteImport } from './routes/_authenticated/comerciante'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -45,6 +46,12 @@ const AuthenticatedClienteRoute = AuthenticatedClienteRouteImport.update({
   path: '/cliente',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedComercianteRoute =
+  AuthenticatedComercianteRouteImport.update({
+    id: '/comerciante',
+    path: '/comerciante',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -52,6 +59,7 @@ export interface FileRoutesByFullPath {
   '/explorar': typeof ExplorarRoute
   '/recuperar-senha': typeof RecuperarSenhaRoute
   '/cliente': typeof AuthenticatedClienteRoute
+  '/comerciante': typeof AuthenticatedComercianteRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -59,6 +67,7 @@ export interface FileRoutesByTo {
   '/explorar': typeof ExplorarRoute
   '/recuperar-senha': typeof RecuperarSenhaRoute
   '/cliente': typeof AuthenticatedClienteRoute
+  '/comerciante': typeof AuthenticatedComercianteRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -68,12 +77,25 @@ export interface FileRoutesById {
   '/explorar': typeof ExplorarRoute
   '/recuperar-senha': typeof RecuperarSenhaRoute
   '/_authenticated/cliente': typeof AuthenticatedClienteRoute
+  '/_authenticated/comerciante': typeof AuthenticatedComercianteRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/entrar' | '/explorar' | '/recuperar-senha' | '/cliente'
+  fullPaths:
+    | '/'
+    | '/entrar'
+    | '/explorar'
+    | '/recuperar-senha'
+    | '/cliente'
+    | '/comerciante'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/entrar' | '/explorar' | '/recuperar-senha' | '/cliente'
+  to:
+    | '/'
+    | '/entrar'
+    | '/explorar'
+    | '/recuperar-senha'
+    | '/cliente'
+    | '/comerciante'
   id:
     | '__root__'
     | '/'
@@ -82,6 +104,7 @@ export interface FileRouteTypes {
     | '/explorar'
     | '/recuperar-senha'
     | '/_authenticated/cliente'
+    | '/_authenticated/comerciante'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -136,15 +159,24 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedClienteRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/comerciante': {
+      id: '/_authenticated/comerciante'
+      path: '/comerciante'
+      fullPath: '/comerciante'
+      preLoaderRoute: typeof AuthenticatedComercianteRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
 
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedClienteRoute: typeof AuthenticatedClienteRoute
+  AuthenticatedComercianteRoute: typeof AuthenticatedComercianteRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedClienteRoute: AuthenticatedClienteRoute,
+  AuthenticatedComercianteRoute: AuthenticatedComercianteRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
